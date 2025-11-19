@@ -17,7 +17,7 @@ PYBIND11_MODULE(_pc_rwalker, m) {
         py::arg("seed_indices"),
         py::arg("n_neighbors"),
         py::arg("sigma1") = 1.0,
-        py::arg("simga2") = 1.0, 
+        py::arg("sigma2") = 1.0, 
         py::arg("min_weight") = 0.0001,
         py::arg("n_proc") = -1
     );
