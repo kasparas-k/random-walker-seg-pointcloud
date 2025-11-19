@@ -10,7 +10,7 @@
 #include <Eigen/Dense>
 #include <Eigen/Eigenvalues>
 #include <Eigen/Sparse>
-#include <Eigen/SparseLU>
+#include <Eigen/SparseCholesky>	
 #include <omp.h>
 
 #include "nanoflann.hpp"
@@ -274,12 +274,12 @@ inline std::vector<std::vector<int>> randomWalkerSegmentation(
     detail::SparseMatrixd RHS = -(BT * M);
     BT.resize(0, 0);
     M.resize(0, 0);
-    Eigen::SparseLU<detail::SparseMatrixd> solver;
+    Eigen::SimplicialLDLT<detail::SparseMatrixd> solver;
     solver.compute(Lu);
 
     std::vector<std::vector<int>> final_segments = seed_indices;
     if (solver.info() != Eigen::Success) {
-        std::cout << "Failed to invert the graph Laplacian " << solver.lastErrorMessage() << std::endl;
+        std::cout << "Failed to invert the graph Laplacian." << std::endl;
         return final_segments;
     }
 
