@@ -1,1 +1,1 @@
-from .pc_rwalker import random_walker_segmentation
+from .pc_rwalker import random_walker_segmentation, random_walker_segmentation_gc

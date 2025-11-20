@@ -34,3 +34,22 @@ def random_walker_segmentation(
         flat_idx[idx] = label
 
     return flat_idx
+
+
+def random_walker_segmentation_gc(
+    xyz: np.ndarray,
+    seed_indices: list[list[int]],
+    n_neighbors: int = 30,
+    *,
+    return_flat: bool = True
+) -> list[list[int]] | np.ndarray: 
+    indices = _pc_rwalker.random_walker_segmentation_gc(xyz, seed_indices, n_neighbors)
+
+    if not return_flat:
+        return indices
+    
+    flat_idx = np.zeros(xyz.shape[0], dtype=np.int32)
+    for label, idx in enumerate(indices):
+        flat_idx[idx] = label
+
+    return flat_idx

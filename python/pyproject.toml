@@ -10,3 +10,6 @@ license = {text = "BSD-3-Clause"}
 [tool.scikit-build]
 cmake.minimum-version = "3.22"
 wheel.packages = ["pc_rwalker"]
+cmake.args = [
+  "-DCMAKE_CXX_FLAGS=-O3 -march=native"
+]
